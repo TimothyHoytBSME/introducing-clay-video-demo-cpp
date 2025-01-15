@@ -3,14 +3,14 @@
 #include "./clay.h"
 #include "./raylib/clay_renderer_raylib.c"
 
-Clay_LayoutConfig layoutElement = Clay_LayoutConfig { .padding = {5} };
+Clay_LayoutConfig layoutElement = Clay_LayoutConfig { .padding = {5, 5, 0, 0} };
 
 const int FONT_ID_BODY_16 = 0;
 Clay_Color COLOR_WHITE = { 255, 255, 255, 255};
 
 void RenderHeaderButton(Clay_String text) {
     CLAY(
-        CLAY_LAYOUT({ .padding = { 16, 8 }}),
+        CLAY_LAYOUT({ .padding = { 16, 16, 8, 8 }}),
         CLAY_RECTANGLE({
             .color = { 140, 140, 140, 255 },
             .cornerRadius = 5
@@ -25,7 +25,7 @@ void RenderHeaderButton(Clay_String text) {
 }
 
 void RenderDropdownMenuItem(Clay_String text) {
-    CLAY(CLAY_LAYOUT({ .padding = { 16, 16 }})) {
+    CLAY(CLAY_LAYOUT({ .padding = { 16, 16 , 16, 16}})) {
         CLAY_TEXT(text, CLAY_TEXT_CONFIG({
             .textColor = { 255, 255, 255, 255 },
             .fontId = FONT_ID_BODY_16,
@@ -132,7 +132,7 @@ int main(void) {
             CLAY_RECTANGLE({ .color = { 43, 41, 51, 255 } }),
             CLAY_LAYOUT({
                 .sizing = layoutExpand,
-                .padding = { 16, 16 },
+                .padding = { 16, 16, 16, 16 },
                 .childGap = 16,
                 .layoutDirection = CLAY_TOP_TO_BOTTOM
             })
@@ -145,7 +145,7 @@ int main(void) {
                         .width = CLAY_SIZING_GROW({0}),
                         .height = CLAY_SIZING_FIXED(60)
                     },
-                    .padding = { 16 },
+                    .padding = { 16, 16, 0, 0 },
                     .childGap = 16,
                     .childAlignment = {
                         .y = CLAY_ALIGN_Y_CENTER
@@ -154,7 +154,7 @@ int main(void) {
             ) {
                 CLAY(
                     CLAY_ID("FileButton"),
-                    CLAY_LAYOUT({ .padding = { 16, 8 }}),
+                    CLAY_LAYOUT({ .padding = { 16, 16, 8, 8 }}),
                     CLAY_RECTANGLE({
                         .color = { 140, 140, 140, 255 },
                         .cornerRadius = 5
@@ -180,7 +180,7 @@ int main(void) {
                                 },
                             }),
                             CLAY_LAYOUT({
-                                .padding = {0, 8 }
+                                .padding = {0, 0, 8, 8 }
                             })
                         ) {
                             CLAY(
@@ -221,7 +221,7 @@ int main(void) {
                             .width = CLAY_SIZING_FIXED(250),
                             .height = CLAY_SIZING_GROW({0})
                         },
-                        .padding = { 16, 16 },
+                        .padding = { 16, 16, 16, 16 },
                         .childGap = 8,
                         .layoutDirection = CLAY_TOP_TO_BOTTOM
                     })
@@ -230,7 +230,7 @@ int main(void) {
                         Document document = documents.documents[i];
                         Clay_LayoutConfig sidebarButtonLayout = {
                             .sizing = { .width = CLAY_SIZING_GROW({0}) },
-                            .padding = { 16, 16 }
+                            .padding = { 16, 16, 16, 16 }
                         };
 
                         if (i == selectedDocumentIndex) {
@@ -276,7 +276,7 @@ int main(void) {
                     CLAY_SCROLL({ .vertical = true }),
                     CLAY_LAYOUT({
                         .sizing = layoutExpand,
-                        .padding = { 16, 16 },
+                        .padding = { 16, 16, 16, 16 },
                         .childGap = 16,
                         .layoutDirection = CLAY_TOP_TO_BOTTOM
                     })
